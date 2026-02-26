@@ -16,7 +16,6 @@ const Sidebar = ({ isOpen, onClose }) => {
 
   return (
     <>
-      {/* Overlay for mobile */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/50 z-40 lg:hidden"
@@ -24,14 +23,12 @@ const Sidebar = ({ isOpen, onClose }) => {
         />
       )}
 
-      {/* Sidebar */}
       <aside
         className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-white/10 dark:bg-gray-900/10 backdrop-blur-lg border-r border-white/20 dark:border-gray-700/20 transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
         <div className="flex flex-col h-full p-6">
-          {/* Logo */}
           <div className="mb-8">
             <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
               Air Quality
@@ -41,7 +38,6 @@ const Sidebar = ({ isOpen, onClose }) => {
             </p>
           </div>
 
-          {/* Navigation */}
           <nav className="flex-1 space-y-2">
             {navItems.map((item) => {
               const Icon = item.icon;
@@ -65,7 +61,6 @@ const Sidebar = ({ isOpen, onClose }) => {
             })}
           </nav>
 
-          {/* Footer */}
           <div className="pt-4 border-t border-white/10 dark:border-gray-700/10">
             <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
               © 2026 Air Quality Monitor

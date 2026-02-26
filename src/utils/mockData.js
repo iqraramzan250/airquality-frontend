@@ -1,10 +1,5 @@
-/**
- * Mock data generator for testing purposes
- * Remove this file when connecting to real API
- */
-
 export const generateMockAirQualityData = (city) => {
-  const baseAQI = Math.floor(Math.random() * 200) + 20; // AQI between 20-220
+  const baseAQI = Math.floor(Math.random() * 200) + 20;
 
   return {
     city,
@@ -30,7 +25,6 @@ export const generateMockTrendData = (period = "24h") => {
   for (let i = count - 1; i >= 0; i--) {
     const timestamp = new Date(now.getTime() - i * interval);
     timestamps.push(timestamp.toISOString());
-    // Generate realistic AQI values with some variation
     const baseValue = 50 + Math.sin((i / count) * Math.PI * 2) * 30;
     const value = Math.max(
       20,

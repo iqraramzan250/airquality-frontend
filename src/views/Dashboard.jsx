@@ -28,7 +28,6 @@ const Dashboard = () => {
     }
   };
 
-  // Pollutant data structure
   const pollutants = [
     { name: "pm25", value: Number.parseFloat(airQualityData?.pm25) || 0 },
     { name: "pm10", value: Number.parseFloat(airQualityData?.pm10) || 0 },
@@ -40,7 +39,6 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen p-4 lg:p-8">
-      {/* Hero Section with Search */}
       <div className="mb-8">
         <div className="text-center mb-6">
           <h1 className="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-gray-100 mb-3">
@@ -58,7 +56,6 @@ const Dashboard = () => {
         />
       </div>
 
-      {/* Error State */}
       {error && (
         <div className="mb-6 bg-red-500/20 border border-red-500/30 rounded-xl p-4 flex items-center gap-3">
           <AlertCircle className="w-5 h-5 text-red-500" />
@@ -66,7 +63,6 @@ const Dashboard = () => {
         </div>
       )}
 
-      {/* Loading State */}
       {loading && (
         <div className="text-center py-12">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
@@ -76,16 +72,13 @@ const Dashboard = () => {
         </div>
       )}
 
-      {/* Main Content */}
       {airQualityData && !loading && (
         <>
-          {/* AQI Gauge and Health Recommendation */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
             <AQIGauge aqi={airQualityData.aqi} city={currentCity} />
             <HealthRecommendation aqi={airQualityData.aqi} />
           </div>
 
-          {/* Pollutant Grid */}
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-4">
               Pollutant Levels
@@ -101,7 +94,6 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Charts */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
             <WeatherChart data={trend24h} title="24-Hour Trend" period="24h" />
             <WeatherChart data={trend7d} title="7-Day History" period="7d" />
@@ -109,7 +101,6 @@ const Dashboard = () => {
         </>
       )}
 
-      {/* Empty State */}
       {!airQualityData && !loading && !error && (
         <div className="text-center py-16">
           <div className="inline-block p-6 rounded-full bg-blue-500/10 mb-4">

@@ -1,29 +1,14 @@
-/**
- * AQI (Air Quality Index) utility functions
- */
-
-/**
- * Calculate AQI from pollutant concentration
- * @param {number} concentration - Pollutant concentration
- * @param {Array} breakpoints - AQI breakpoints [cLow, cHigh, iLow, iHigh]
- * @returns {number} AQI value
- */
 export const calculateAQI = (concentration, breakpoints) => {
   const [cLow, cHigh, iLow, iHigh] = breakpoints;
   const aqi = ((iHigh - iLow) / (cHigh - cLow)) * (concentration - cLow) + iLow;
   return Math.round(aqi);
 };
 
-/**
- * Get AQI category and color based on AQI value
- * @param {number} aqi - AQI value
- * @returns {Object} Category, color, and description
- */
 export const getAQICategory = (aqi) => {
   if (aqi <= 50) {
     return {
       category: "Good",
-      color: "#10b981", // green
+      color: "#10b981",
       bgColor: "bg-green-500",
       textColor: "text-green-500",
       description: "Air quality is satisfactory",
@@ -31,7 +16,7 @@ export const getAQICategory = (aqi) => {
   } else if (aqi <= 100) {
     return {
       category: "Moderate",
-      color: "#f59e0b", // yellow
+      color: "#f59e0b",
       bgColor: "bg-yellow-500",
       textColor: "text-yellow-500",
       description: "Acceptable for most people",
@@ -39,7 +24,7 @@ export const getAQICategory = (aqi) => {
   } else if (aqi <= 150) {
     return {
       category: "Unhealthy for Sensitive Groups",
-      color: "#f97316", // orange
+      color: "#f97316",
       bgColor: "bg-orange-500",
       textColor: "text-orange-500",
       description: "Members of sensitive groups may experience health effects",
@@ -47,7 +32,7 @@ export const getAQICategory = (aqi) => {
   } else if (aqi <= 200) {
     return {
       category: "Unhealthy",
-      color: "#ef4444", // red
+      color: "#ef4444",
       bgColor: "bg-red-500",
       textColor: "text-red-500",
       description: "Everyone may begin to experience health effects",
@@ -55,7 +40,7 @@ export const getAQICategory = (aqi) => {
   } else if (aqi <= 300) {
     return {
       category: "Very Unhealthy",
-      color: "#8b5cf6", // purple
+      color: "#8b5cf6",
       bgColor: "bg-purple-500",
       textColor: "text-purple-500",
       description:
@@ -64,7 +49,7 @@ export const getAQICategory = (aqi) => {
   } else {
     return {
       category: "Hazardous",
-      color: "#7f1d1d", // dark red
+      color: "#7f1d1d",
       bgColor: "bg-red-900",
       textColor: "text-red-900",
       description: "Health warning of emergency conditions",
@@ -72,11 +57,6 @@ export const getAQICategory = (aqi) => {
   }
 };
 
-/**
- * Get health recommendation based on AQI
- * @param {number} aqi - AQI value
- * @returns {Object} Recommendation message and icon
- */
 export const getHealthRecommendation = (aqi) => {
   if (aqi <= 50) {
     return {
@@ -122,11 +102,6 @@ export const getHealthRecommendation = (aqi) => {
   }
 };
 
-/**
- * Format pollutant name
- * @param {string} pollutant - Pollutant code
- * @returns {string} Formatted name
- */
 export const formatPollutantName = (pollutant) => {
   const names = {
     pm25: "PM2.5",
@@ -139,11 +114,6 @@ export const formatPollutantName = (pollutant) => {
   return names[pollutant.toLowerCase()] || pollutant.toUpperCase();
 };
 
-/**
- * Get pollutant unit
- * @param {string} pollutant - Pollutant code
- * @returns {string} Unit
- */
 export const getPollutantUnit = (pollutant) => {
   const units = {
     pm25: "μg/m³",

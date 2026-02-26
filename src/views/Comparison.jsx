@@ -49,7 +49,6 @@ const Comparison = () => {
         </p>
       </div>
 
-      {/* Search inputs and Compare button */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
         <div>
           <label htmlFor="compare-city1" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">

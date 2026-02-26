@@ -4,15 +4,12 @@ import { getAQICategory } from "../../utils/aqiUtils";
 const AQIGauge = ({ aqi, city }) => {
   const category = useMemo(() => getAQICategory(aqi || 0), [aqi]);
 
-  // Calculate percentage for circular progress (0-100)
   const percentage = useMemo(() => {
     if (!aqi) return 0;
-    // Normalize AQI to 0-100% (assuming max AQI is 500)
     return Math.min((aqi / 500) * 100, 100);
   }, [aqi]);
 
-  // Calculate stroke-dashoffset for SVG circle
-  const circumference = 2 * Math.PI * 90; // radius = 90
+  const circumference = 2 * Math.PI * 90;
   const offset = circumference - (percentage / 100) * circumference;
 
   return (
@@ -22,13 +19,11 @@ const AQIGauge = ({ aqi, city }) => {
           {city ? `${city} - Air Quality Index` : "Air Quality Index"}
         </h3>
 
-        {/* Circular Gauge */}
         <div className="relative w-64 h-64 mb-6">
           <svg
             className="transform -rotate-90 w-full h-full"
             viewBox="0 0 200 200"
           >
-            {/* Background circle */}
             <circle
               cx="100"
               cy="100"
@@ -37,7 +32,6 @@ const AQIGauge = ({ aqi, city }) => {
               stroke="rgba(255, 255, 255, 0.1)"
               strokeWidth="12"
             />
-            {/* Progress circle */}
             <circle
               cx="100"
               cy="100"
@@ -52,7 +46,6 @@ const AQIGauge = ({ aqi, city }) => {
             />
           </svg>
 
-          {/* Center content */}
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <div
               className="text-6xl font-bold"
@@ -69,7 +62,6 @@ const AQIGauge = ({ aqi, city }) => {
           </div>
         </div>
 
-        {/* Description */}
         <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
           {category.description}
         </p>

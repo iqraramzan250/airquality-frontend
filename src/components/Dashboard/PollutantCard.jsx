@@ -2,7 +2,6 @@ import { useMemo } from "react";
 import { formatPollutantName, getPollutantUnit } from "../../utils/aqiUtils";
 import { Wind, Droplets, Cloud, Zap } from "lucide-react";
 
-// Icon mapping outside component to avoid creating during render
 const POLLUTANT_ICONS = {
   pm25: Droplets,
   pm10: Droplets,
@@ -17,7 +16,6 @@ const PollutantCard = ({ pollutant, value, unit }) => {
   const defaultUnit = useMemo(() => getPollutantUnit(pollutant), [pollutant]);
   const displayUnit = unit || defaultUnit;
 
-  // Simple color based on value (this is simplified - real AQI calculation would be more complex)
   const getColor = (val) => {
     if (val < 50) return "text-green-500";
     if (val < 100) return "text-yellow-500";

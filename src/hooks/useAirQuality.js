@@ -1,12 +1,6 @@
 import { useState, useEffect } from "react";
 import { airQualityAPI } from "../services/api";
 
-/**
- * Custom hook for fetching air quality data
- * @param {string} city - City name
- * @param {boolean} enabled - Whether to fetch data
- * @returns {Object} Air quality data, loading state, and error
- */
 export const useAirQuality = (city, enabled = true) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -39,13 +33,6 @@ export const useAirQuality = (city, enabled = true) => {
   return { data, loading, error };
 };
 
-/**
- * Custom hook for fetching trend data
- * @param {string} city - City name
- * @param {string} period - '24h' or '7d'
- * @param {boolean} enabled - Whether to fetch data
- * @returns {Object} Trend data, loading state, and error
- */
 export const useTrendData = (city, period = "24h", enabled = true) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -81,13 +68,6 @@ export const useTrendData = (city, period = "24h", enabled = true) => {
   return { data, loading, error };
 };
 
-/**
- * Fetch comparison data for two cities (single API call)
- * @param {string} city1 - First city name
- * @param {string} city2 - Second city name
- * @param {boolean} enabled - Whether to fetch
- * @returns {Object} { data: { city1, city2 }, loading, error }
- */
 export const useCompareCities = (city1, city2, enabled = true) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);

@@ -27,7 +27,6 @@ const WeatherChart = ({ data, title, period = "24h" }) => {
       return null;
     }
 
-    // Format timestamps based on period
     const formatTime = (timestamp) => {
       const date = new Date(timestamp);
       if (period === "24h") {
@@ -46,19 +45,18 @@ const WeatherChart = ({ data, title, period = "24h" }) => {
     const labels = data.timestamps.map(formatTime);
     const values = data.values;
 
-    // Determine gradient colors based on average value
     const avgValue = values.reduce((a, b) => a + b, 0) / values.length;
-    let gradientColor = "rgba(59, 130, 246, 0.5)"; // blue
+    let gradientColor = "rgba(59, 130, 246, 0.5)";
     let borderColor = "rgba(59, 130, 246, 1)";
 
     if (avgValue > 150) {
-      gradientColor = "rgba(239, 68, 68, 0.5)"; // red
+      gradientColor = "rgba(239, 68, 68, 0.5)";
       borderColor = "rgba(239, 68, 68, 1)";
     } else if (avgValue > 100) {
-      gradientColor = "rgba(249, 115, 22, 0.5)"; // orange
+      gradientColor = "rgba(249, 115, 22, 0.5)";
       borderColor = "rgba(249, 115, 22, 1)";
     } else if (avgValue > 50) {
-      gradientColor = "rgba(234, 179, 8, 0.5)"; // yellow
+      gradientColor = "rgba(234, 179, 8, 0.5)";
       borderColor = "rgba(234, 179, 8, 1)";
     }
 

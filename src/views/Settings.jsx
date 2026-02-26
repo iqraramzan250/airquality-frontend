@@ -26,7 +26,6 @@ const Settings = () => {
       </div>
 
       <div className="max-w-2xl space-y-6">
-        {/* Appearance */}
         <div className="bg-white/10 dark:bg-gray-800/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 dark:border-gray-700/20">
           <div className="flex items-center gap-3 mb-4">
             {darkMode ? (
@@ -62,7 +61,6 @@ const Settings = () => {
           </div>
         </div>
 
-        {/* Notifications */}
         <div className="bg-white/10 dark:bg-gray-800/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 dark:border-gray-700/20">
           <div className="flex items-center gap-3 mb-4">
             <Bell className="w-5 h-5 text-blue-400" />
@@ -94,7 +92,6 @@ const Settings = () => {
           </div>
         </div>
 
-        {/* Auto Refresh */}
         <div className="bg-white/10 dark:bg-gray-800/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 dark:border-gray-700/20">
           <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
             Data Refresh
@@ -141,7 +138,6 @@ const Settings = () => {
           </div>
         </div>
 
-        {/* About */}
         <div className="bg-white/10 dark:bg-gray-800/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 dark:border-gray-700/20">
           <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
             About

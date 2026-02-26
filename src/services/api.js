@@ -15,7 +15,6 @@ const api = axios.create({
   },
 });
 
-// Request interceptor
 api.interceptors.request.use(
   (config) => {
     return config;
@@ -25,7 +24,6 @@ api.interceptors.request.use(
   },
 );
 
-// Response interceptor: surface backend { message } for 400, 404, 502
 api.interceptors.response.use(
   (response) => response.data,
   (error) => {
@@ -46,19 +44,12 @@ api.interceptors.response.use(
 );
 
 export const airQualityAPI = {
-  /**
-   * Get current air quality data for a city
-   * @param {string} city - City name
-   * @returns {Promise} Air quality data
-   */
   getCurrentAirQuality: async (city) => {
     try {
       const data = await api.get(`/air-quality/${encodeURIComponent(city)}`);
       return data;
     } catch (error) {
-      // Fallback to mock data if API fails and mock mode is enabled
       if (USE_MOCK_DATA || error.message.includes("Network error")) {
-        // Simulate network delay
         await new Promise((resolve) => setTimeout(resolve, 500));
         return generateMockAirQualityData(city);
       }
@@ -66,11 +57,6 @@ export const airQualityAPI = {
     }
   },
 
-  /**
-   * Get 24-hour trend data for a city
-   * @param {string} city - City name
-   * @returns {Promise} 24-hour trend data
-   */
   get24HourTrend: async (city) => {
     try {
       const data = await api.get(
@@ -86,11 +72,6 @@ export const airQualityAPI = {
     }
   },
 
-  /**
-   * Get 7-day history data for a city
-   * @param {string} city - City name
-   * @returns {Promise} 7-day history data
-   */
   get7DayHistory: async (city) => {
     try {
       const data = await api.get(
@@ -106,12 +87,6 @@ export const airQualityAPI = {
     }
   },
 
-  /**
-   * Compare air quality between two cities
-   * @param {string} city1 - First city name
-   * @param {string} city2 - Second city name
-   * @returns {Promise} Comparison data
-   */
   compareCities: async (city1, city2) => {
     try {
       const data = await api.get(`/air-quality/compare`, {

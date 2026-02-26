@@ -1,10 +1,5 @@
 import { useState, useCallback } from 'react'
 
-/**
- * Custom hook for managing counter state
- * @param {number} initialValue - Initial counter value
- * @returns {Object} Counter state and increment function
- */
 export const useCounter = (initialValue = 0) => {
   const [count, setCount] = useState(initialValue)
 
