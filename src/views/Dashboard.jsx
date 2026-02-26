@@ -5,27 +5,37 @@ import PollutantCard from "../components/Dashboard/PollutantCard";
 import HealthRecommendation from "../components/Dashboard/HealthRecommendation";
 import WeatherChart from "../components/Charts/WeatherChart";
 import { useAirQuality, useTrendData } from "../hooks/useAirQuality";
+import { STORAGE_KEYS } from "../utils/constants";
 import { AlertCircle } from "lucide-react";
 
 const Dashboard = () => {
-  const [currentCity, setCurrentCity] = useState("");
+  const [currentCity, setCurrentCity] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.localStorage.getItem(STORAGE_KEYS.LAST_CITY) || "";
+    }
+    return "";
+  });
 
   const { data: airQualityData, loading, error } = useAirQuality(currentCity);
   const { data: trend24h } = useTrendData(currentCity, "24h");
   const { data: trend7d } = useTrendData(currentCity, "7d");
 
   const handleSearch = (searchCity) => {
-    setCurrentCity(searchCity);
+    const city = searchCity.trim();
+    if (city) {
+      setCurrentCity(city);
+      window.localStorage.setItem(STORAGE_KEYS.LAST_CITY, city);
+    }
   };
 
   // Pollutant data structure
   const pollutants = [
-    { name: "pm25", value: parseFloat(airQualityData?.pm25) || 0 },
-    { name: "pm10", value: parseFloat(airQualityData?.pm10) || 0 },
-    { name: "co", value: parseFloat(airQualityData?.co) || 0 },
-    { name: "no2", value: parseFloat(airQualityData?.no2) || 0 },
-    { name: "o3", value: parseFloat(airQualityData?.o3) || 0 },
-    { name: "so2", value: parseFloat(airQualityData?.so2) || 0 },
+    { name: "pm25", value: Number.parseFloat(airQualityData?.pm25) || 0 },
+    { name: "pm10", value: Number.parseFloat(airQualityData?.pm10) || 0 },
+    { name: "co", value: Number.parseFloat(airQualityData?.co) || 0 },
+    { name: "no2", value: Number.parseFloat(airQualityData?.no2) || 0 },
+    { name: "o3", value: Number.parseFloat(airQualityData?.o3) || 0 },
+    { name: "so2", value: Number.parseFloat(airQualityData?.so2) || 0 },
   ];
 
   return (
@@ -44,6 +54,7 @@ const Dashboard = () => {
           onSearch={handleSearch}
           loading={loading}
           placeholder="Enter city name (e.g., New York, London, Tokyo)..."
+          initialValue={currentCity}
         />
       </div>
 

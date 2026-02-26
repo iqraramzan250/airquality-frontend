@@ -126,7 +126,7 @@ const WeatherChart = ({ data, title, period = "24h" }) => {
         },
         y: {
           beginAtZero: true,
-          max: 300,
+          max: 500,
           grid: {
             color: "rgba(255, 255, 255, 0.05)",
           },

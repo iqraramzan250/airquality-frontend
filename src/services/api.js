@@ -25,21 +25,23 @@ api.interceptors.request.use(
   },
 );
 
-// Response interceptor
+// Response interceptor: surface backend { message } for 400, 404, 502
 api.interceptors.response.use(
   (response) => response.data,
   (error) => {
     if (error.response) {
-      throw new Error(error.response.data?.message || "An error occurred");
-    } else if (error.request) {
-      // If network error and mock data is enabled, return mock data
-      if (USE_MOCK_DATA) {
-        return null; // Will be handled in the API functions
-      }
-      throw new Error("Network error. Please check your connection.");
-    } else {
-      throw new Error(error.message || "An unexpected error occurred");
+      const message =
+        error.response.data?.message ||
+        (error.response.status === 404 && "City or data not found.") ||
+        (error.response.status === 502 && "Backend service error.") ||
+        "An error occurred";
+      throw new Error(message);
     }
+    if (error.request) {
+      if (USE_MOCK_DATA) return null;
+      throw new Error("Network error. Please check your connection.");
+    }
+    throw new Error(error.message || "An unexpected error occurred");
   },
 );
 

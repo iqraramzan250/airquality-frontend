@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Search, Loader2 } from "lucide-react";
 
 const SearchBar = ({
   onSearch,
   loading = false,
   placeholder = "Search for a city...",
+  initialValue = "",
 }) => {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(initialValue);
+
+  useEffect(() => {
+    setQuery(initialValue);
+  }, [initialValue]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
